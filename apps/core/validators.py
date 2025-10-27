@@ -6,3 +6,6 @@ def handle_validation_errors(e):
         else:
             errors_list.append(err["msg"])
     return errors_list
+
+def password_hasher(raw_password:str):
+    return raw_password

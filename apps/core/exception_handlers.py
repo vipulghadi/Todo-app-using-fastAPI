@@ -42,6 +42,18 @@ def register_exception_handlers(app: FastAPI):
             errors=[]
         )
 
+    @app.exception_handler(ValueError)
+    async def value_exception_handler(request: Request, exc:ValueError):
+
+        return api_response(
+            status_code=500,
+            message=str(exc),
+            success=False,
+            data=None,
+            errors=[str(exc)]
+        )
+
+
 
 
 
