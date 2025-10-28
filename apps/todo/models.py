@@ -6,7 +6,7 @@ class TodoModel(SQLModel, table=True):
     is_completed: bool = Field(default=False)
     date: date = Field(default=date.today)
     is_deleted: bool = Field(default=False)
-
     created_at: datetime = Field(default=datetime.now)
     updated_at: datetime = Field(default=datetime.now)
+
 

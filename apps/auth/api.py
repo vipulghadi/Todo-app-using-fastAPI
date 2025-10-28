@@ -4,6 +4,7 @@ from .service import AuthService
 from .schema import UserRegisterSchema, UserLoginSchema
 from ..core.api_response import api_response
 from config.database import get_session
+from .jwt_handler import get_current_user
 
 router = APIRouter()
 
@@ -43,6 +44,19 @@ def login_user(user: UserLoginSchema,session: Session = Depends(get_session)):
         "errors": []
     }
 
-@router.get("/current-user")
-def current_user():
-    return {"message": "Weepul is current User"}
+@router.get("/me")
+def current_user(user=Depends(get_current_user)):
+    return {
+        "message": "successfully logged in",
+        "success": True,
+        "data":{
+            "id": user.get("id", None),
+            "first_name": user.get("first_name", None),
+            "last_name": user.get("last_name", None),
+            "email": user.get("email", None)
+        },
+        "status_code":200,
+        "errors": []
+
+    }
+

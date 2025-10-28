@@ -1,5 +1,5 @@
 from sqlmodel import Field, SQLModel,Relationship
-from datetime import datetime
+from datetime import datetime,date
 
 class TaskModel(SQLModel, table=True):
     title=Field(nullable=False,min_length=3,max_length=5)
